@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/jquery/dist/jquery.js"></script>
+  <style>
+    .user {
+      height: 200px;
+      line-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+  </div>
+<script>
+const appDOM = document.querySelector('#app')
+
+function renderHome () {
+  appDOM.innerHTML = ''
+  const html = `<div><p class="user">Test1</p><p class="user">Test2</p><p class="user">Test3</p><p class="user">Test4</p><p class="user">Test5</p><p class="user">Test6</p><p class="user">Test7</p><p class="user">Test8</p><p class="user">Test9</p><p class="user">Test10</p><p class="user">Test11</p><p class="user">Test12</p><p class="user">Test13</p><p class="user">Test14</p><p class="user">Test15</p><p class="user">Test16</p><p class="user">Test17</p><p class="user">Test18</p><p class="user">Test19</p><p class="user">Test20</p></div>`
+  setTimeout(() => {
+    appDOM.innerHTML = html
+    $('.user').click(e => {
+      window.history.pushState({ detail: true }, 'page detail', '#detail')
+      renderDetail()
+    })
+  }, 20)
+  
+}
+
+function renderDetail () {
+  appDOM.innerHTML = ''
+  const html = `<h1>Detail</h1>`
+  setTimeout(() => {
+    appDOM.innerHTML = html
+  }, 20)
+}
+
+renderHome()
+
+window.onpopstate = e => {
+  if (!e.state || !e.state.detail) {
+    renderHome()
+  }
+}
+</script>
+</body>
+</html>
